@@ -1,5 +1,7 @@
 package safety_standard.ss_test.swing_frame;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import safety_standard.ss_test.csv.CsvWriter;
 import safety_standard.ss_test.dto.Category;
 import safety_standard.ss_test.entities.DocumentEntity;
@@ -29,7 +31,8 @@ public class Frame extends JFrame {
     private JButton saveButton;
     private JButton uploadButton;
 
-    private DocumentService documentService = new DocumentService();
+    private ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    private DocumentService documentService = context.getBean(DocumentService.class);
 
     public Frame() {
         setTitle("Выгрузка категорий документов");
@@ -164,7 +167,6 @@ public class Frame extends JFrame {
                 JOptionPane.showMessageDialog(this, "По введенному URL ничего не найдено!");
             }
             else {
-                DocumentService documentService = new DocumentService();
                 documentService.saveListOfDocWithCheckExists(listOfDoc);
 
                 java.util.List<Category> categoryList = new ArrayList<>();
