@@ -164,7 +164,6 @@ public class Frame extends JFrame {
                 JOptionPane.showMessageDialog(this, "По введенному URL ничего не найдено!");
             }
             else {
-                DocumentService documentService = new DocumentService();
                 documentService.saveListOfDocWithCheckExists(listOfDoc);
 
                 java.util.List<Category> categoryList = new ArrayList<>();
